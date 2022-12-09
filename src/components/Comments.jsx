@@ -62,7 +62,7 @@ const Comments = ({ videoId }) => {
 
     useEffect(() => {
         const getC = async () => {
-            const data = await axiosInstance.get(`/comms/${videoId}`);
+            const data = await axios.get(`${url}/comms/${videoId}`);
             // console.log(data.data);
             // setComms(data.data);
             dispatch(initComments(data.data));

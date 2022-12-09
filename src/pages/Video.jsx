@@ -18,7 +18,8 @@ import {
     fetchSuccess,
     like
 } from '../redux/videoSlice.js';
-import { axiosInstance } from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import numeral from 'numeral';
 
 const Container = styled.div`
@@ -126,7 +127,7 @@ const Video = () => {
 
     useEffect(() => {
         const addV = async () => {
-            const dat = await axiosInstance.put(`/videos/views/${pathLoc}`);
+            const dat = await axios.put(`${url}/videos/views/${pathLoc}`);
             console.log(pathLoc);
             console.log(dat.data);
         };
@@ -136,13 +137,13 @@ const Video = () => {
     useEffect(() => {
         dispatch(fetchStart());
         const getVideo = async () => {
-            const data = await axiosInstance.get(`/videos/find/${pathLoc}`);
+            const data = await axios.get(`${url}/videos/find/${pathLoc}`);
             console.log(data.data);
             // setVideo(data.data);
             dispatch(fetchSuccess(data.data));
 
-            const data2 = await axiosInstance.get(
-                `/users/find/${data.data.userId}`
+            const data2 = await axios.get(
+                `${url}/users/find/${data.data.userId}`
             );
             console.log(data2.data);
             setChannel(data2.data);
@@ -151,20 +152,20 @@ const Video = () => {
     }, [pathLoc]);
 
     const handleLike = async () => {
-        await axiosInstance.put(`/users/like/${currVideo._id}`);
+        await axios.put(`${url}/users/like/${currVideo._id}`);
         dispatch(like(currUser.user._id));
     };
     const handleDislike = async () => {
-        await axiosInstance.put(`/users/dislike/${currVideo._id}`);
+        await axios.put(`${url}/users/dislike/${currVideo._id}`);
         dispatch(dislike(currUser.user._id));
     };
     const handleSub = async () => {
         console.log(channel._id);
         if (currUser.user.subscibedUsers.includes(channel._id)) {
-            await axiosInstance.put(`/users/unsub/${channel._id}`);
+            await axios.put(`${url}/users/unsub/${channel._id}`);
             dispatch(subscription(channel._id));
         } else {
-            await axiosInstance.put(`/users/sub/${channel._id}`);
+            await axios.put(`${url}/users/sub/${channel._id}`);
             dispatch(subscription(channel._id));
         }
     };
