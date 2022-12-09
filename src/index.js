@@ -12,6 +12,9 @@ import Search from './pages/Search.jsx';
 import Video from './pages/Video';
 import { persistor, store } from './redux/store.js';
 import { darkTheme, lightTheme } from './utils/Theme';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const Container = styled.div`
     display: flex;
