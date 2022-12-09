@@ -1,4 +1,4 @@
 import axios from 'axios';
 export const axiosInstance = axios.create({
-    baseURL: 'https://utube-video-app.herokuapp.com/api/'
+    baseURL: 'https://video-app-back.onrender.com/api/'
 });
