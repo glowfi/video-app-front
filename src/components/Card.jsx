@@ -1,4 +1,5 @@
-import { axiosInstance } from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -56,7 +57,7 @@ const Card = ({ type, vd }) => {
 
     useEffect(() => {
         const getUser = async () => {
-            const data = await axiosInstance.get(`/users/find/${vd.userId}`);
+            const data = await axios.get(`${url}/users/find/${vd.userId}`);
             setUser(data.data);
         };
         getUser();

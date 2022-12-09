@@ -1,4 +1,5 @@
-import { axiosInstance } from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Comment from './Comment';
@@ -49,7 +50,7 @@ const Comments = ({ videoId }) => {
     const dispatch = useDispatch();
 
     const handleComm = async () => {
-        const data = await axiosInstance.post(`/comms/${videoId}`, {
+        const data = await axios.post(`${url}/comms/${videoId}`, {
             comment: currcomm
         });
         console.log(data.data);

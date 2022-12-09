@@ -1,4 +1,5 @@
-import { axiosInstance } from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import { signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -84,7 +85,7 @@ const Login = () => {
         e.preventDefault();
         dispatch(loginStart());
         try {
-            const data = await axiosInstance.post('/auth/signin', {
+            const data = await axios.post(`${url}/auth/signin`, {
                 email: email,
                 password: pass
             });
@@ -110,7 +111,7 @@ const Login = () => {
         e.preventDefault();
         dispatch(loginStart());
         try {
-            const data = await axiosInstance.post('/auth/signup', {
+            const data = await axios.post(`${url}/auth/signup`, {
                 email: remail,
                 password: rpass,
                 name: name
@@ -138,7 +139,7 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then(async (res) => {
                 console.log(res);
-                const data = await axiosInstance.post('/auth/google', {
+                const data = await axios.post(`${url}/auth/google, {
                     // name: res.user.displayName.split(' ')[0].slice(0, 2),
                     name: res.user.displayName,
                     email: 't@t.com',

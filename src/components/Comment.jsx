@@ -1,4 +1,5 @@
-import { axiosInstance } from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -28,7 +29,6 @@ const Name = styled.span`
     font-weight: 500;
 `;
 
-
 const Text = styled.span`
     font-size: 14px;
 `;
@@ -39,7 +39,7 @@ const Comment = ({ det }) => {
     useEffect(() => {
         // dispatch(fetchStart());
         const getVideo = async () => {
-            const data = await axiosInstance.get(`/users/find/${det.userId}`);
+            const data = await axios.get(`${url}/users/find/${det.userId}`);
             console.log(data.data);
             setChannel(data.data);
         };

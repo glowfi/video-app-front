@@ -1,4 +1,5 @@
-import {axiosInstance} from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
@@ -14,7 +15,7 @@ const Home = ({ type }) => {
 
     useEffect(() => {
         const fetchVideos = async () => {
-            const res = await axiosInstance.get(`/videos/${type}`);
+            const res = await axios.get(`${url}/videos/${type}`);
             console.log(res.data);
             setVideos(res.data);
         };

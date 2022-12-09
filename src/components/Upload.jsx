@@ -7,7 +7,8 @@ import {
     getDownloadURL
 } from 'firebase/storage';
 import app from '../utils/firebase.js';
-import {axiosInstance} from '../config.js';
+import axios from 'axios';
+import { url } from '../config.js';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -92,7 +93,7 @@ const Upload = ({ setOpen }) => {
         // console.log(imgurl);
         // console.log(vidurl);
 
-        const res = await axiosInstance.post('/videos', {
+        const res = await axios.post(`${url}/videos`, {
             title,
             desc,
             thumbnail: imgurl,
