@@ -139,7 +139,7 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then(async (res) => {
                 console.log(res);
-                const data = await axios.post(`${url}/auth/google, {
+                const data = await axios.post(`${url}/auth/google`, {
                     // name: res.user.displayName.split(' ')[0].slice(0, 2),
                     name: res.user.displayName,
                     email: 't@t.com',
